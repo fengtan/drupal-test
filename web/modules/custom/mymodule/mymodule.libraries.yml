@@ -1,0 +1,7 @@
+mymodule:
+  version: 1.x
+  js:
+    js/mymodule.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
