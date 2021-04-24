@@ -1,5 +1,0 @@
-name: My Module
-type: module
-description: 'My custom module'
-package: Custom
-core_version_requirement: ^8.8 || ^9
