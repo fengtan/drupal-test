@@ -27,6 +27,7 @@ EXPOSE ${APACHE_LISTEN_PORT}
 ENV APACHE_DOCUMENT_ROOT /var/www/web
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g'     /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN rm -r /var/www/html
 WORKDIR /var/www
 
 RUN \
@@ -44,7 +45,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 ENV PATH=$PATH:/var/www/vendor/bin
 
 COPY . /var/www
-RUN composer --working-dir=/var/www install
+RUN composer --working-dir=/var/www install --no-dev
 RUN \
   chgrp /var/www -R 0 && \
   chmod /var/www -R g=u
