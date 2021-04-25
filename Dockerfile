@@ -45,6 +45,8 @@ ENV PATH=$PATH:/var/www/vendor/bin
 
 COPY . /var/www
 RUN composer --working-dir=/var/www install
-RUN chmod -R g=u /var/www
+RUN \
+  chgrp /var/www -R 0 && \
+  chmod /var/www -R g=u
 
 ENV DEBIAN_FRONTEND=dialog
