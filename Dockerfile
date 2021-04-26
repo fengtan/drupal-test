@@ -47,7 +47,7 @@ ENV PATH=$PATH:/var/www/vendor/bin
 COPY . /var/www
 RUN composer --working-dir=/var/www install --no-dev
 RUN \
-  chgrp /var/www -R 0 && \
-  chmod /var/www -R g=u
+  chgrp -R 0 /var/www && \
+  chmod -R g=u /var/www
 
 ENV DEBIAN_FRONTEND=dialog
